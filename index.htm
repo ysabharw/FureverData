@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FureverData</title>
+</head>
+<body>
+    <h1>FureverData: Pet Adoption Insights</h1>
+    <form action="/visualize" method="POST">
+        <label for="pet_type">Select Pet Type:</label>
+        <select id="pet_type" name="pet_type">
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Rabbit">Rabbit</option>
+        </select>
+        <input type="submit" value="Visualize">
+    </form>
+    <div>
+        {{ plot_div | safe }}
+    </div>
+</body>
+</html>
