@@ -14,7 +14,7 @@ def bar_chart_pet_type_vs_adoption():
     fig = px.bar(grouped, x='PetType', y='AdoptionLikelihood', title='Adoption Likelihood by Pet Type')
     fig.write_html("bar_chart_pet_type_vs_adoption.html")
 
-# Example 2: Pie chart for Vaccination Status
+# Example 2: Vaccination Status and Adoption Likelihood
 def pie_chart_vaccination_status():
     vaccinated = df.groupby('Vaccinated')['AdoptionLikelihood'].mean().reset_index()
     vaccinated['Status'] = vaccinated['Vaccinated'].apply(lambda x: 'Vaccinated' if x == 1 else 'Not Vaccinated')
@@ -39,12 +39,19 @@ def histogram_time_in_shelter():
                        title='Time in Shelter vs Adoption Likelihood')
     fig.write_html("histogram_time_in_shelter.html")
 
-# Run all visualizations
+# Example 6: Heatmap for Age vs Weight and Adoption Likelihood
+def heatmap_age_vs_weight():
+    fig = px.density_heatmap(df, x='AgeMonths', y='WeightKg', z='AdoptionLikelihood',
+                             title='Heatmap of Age vs Weight and Adoption Likelihood', nbinsx=20, nbinsy=20)
+    fig.write_html("heatmap_age_vs_weight.html")
+
+# Run all visualizations and save them as HTML files
 bar_chart_pet_type_vs_adoption()
 pie_chart_vaccination_status()
 scatter_plot_weight_vs_adoption()
 box_plot_age_by_pet_type()
 histogram_time_in_shelter()
+heatmap_age_vs_weight()
 
 # Close the database connection
 conn.close()
